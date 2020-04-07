@@ -1,92 +1,135 @@
-class LinkedListNode {
-  constructor(value, next = null) {
-    this.value = value;
-    this.next = next;
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.nextElement = null;
   }
 }
-
-export default class LinkedList {
+  
+class LinkedList {
   constructor() {
     this.head = null;
-    this.tail = null;
   }
-  prepend(value) {
-    const newNode = new LinkedListNode(value, this.head);
-    this.head = newNode;
-    if (!this.tail) {
-      this.tail = newNode;
+
+  insertAtHead(newData) {
+    let tempNode = new Node(newData);
+    tempNode.nextElement = this.head;
+    this.head = tempNode;
+    return this; //returning the updated list
+  }
+
+  isEmpty() {
+    return (this.head == null);
+  }
+
+  printList() {
+    if (this.isEmpty()) {
+      console.log("Empty List");
+      return false;
+    } else {
+      let temp = this.head;
+      while (temp != null) {
+        process.stdout.write(String(temp.data));
+        process.stdout.write(" -> ");
+        temp = temp.nextElement;
+      }
+      console.log("null");
+      return true;
     }
+  }
+
+  getHead() {
+    return this.head;
+  }
+  setHead(newHead) {
+    this.head = newHead;
     return this;
   }
-  append(value) {
-    const newNode = new LinkedListNode(value);
-    if (!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
-      console.log("newNode", this);
+  getListStr() {
+    if (this.isEmpty()) {
+      return "null";
+    } else {
+      let st = "";
+      let temp = this.head
+      while (temp != null) {
+        st += String(temp.data);
+        st += " -> ";
+        temp = temp.nextElement;
+      }
+      st += "null";
+      return st;
+    }
+  }
+  insertAtTail(newData) {
+    let node = new Node(newData);
+
+    if (this.isEmpty()) {
+      this.head = node;
       return this;
     }
-    this.tail.next = newNode;
-    this.tail = newNode;
+    
+    let currentNode = this.head;
+    while (currentNode.nextElement != null) {
+      currentNode = currentNode.nextElement;
+    }
+    currentNode.nextElement = node;
+    return this;
+  }
+  search(value) {
+    let currentNode = this.head;
+    while (currentNode != null) {
+      if (currentNode.data == value) {
+        return true; 
+      }
+      currentNode = currentNode.nextElement
+    }
+    return false;
+  }
+  deleteAtHead() {
+    if (this.isEmpty()) {
+      return this;
+    }
+    let firstElement = this.head;
+    this.head = firstElement.nextElement;
 
     return this;
   }
-  find({ value = null, cb = undefined }) {
-    if (!this.head) {
-      return null;
+  deleteVal(value) {
+    let deleted = null; 
+
+    if (this.isEmpty()) {
+      return false;
     }
+
     let currentNode = this.head;
-    while (currentNode) {
-      if (cb && cb(currentNode.value)) {
-        return currentNode;
-      }
-      if (value === currentNode.value) {
-        return currentNode;
-      }
-      currentNode = currentNode.next;
+    if (currentNode.data == value) {
+      this.head = currentNode.nextElement;
+      return true;
     }
-    return null;
+
+    while (currentNode.nextElement != null) {
+      if (currentNode.nextElement.data == value) {
+        currentNode.nextElement = currentNode.nextElement.nextElement;
+        return true;
+      }
+      currentNode = currentNode.nextElement;
+    }
+    deleted = false;
+    return deleted;
   }
-  delete(value) {
-    if (!this.head) {
-      return null;
+  deleteAtTail() {
+    if (this.isEmpty()) {
+      return this;
     }
-    let deletedNode = null;
-    if (typeof this.head.value === "object") {
-      if (this.head.value.value === value) {
-        deletedNode = this.head;
-        this.head = this.head.next;
-      }
-      let currentNode = this.head;
-      while (currentNode.next) {
-        if (currentNode.next.value.value === value) {
-          deletedNode = currentNode.next;
-          currentNode.next = currentNode.next.next;
-        } else {
-          currentNode = currentNode.next;
-        }
-      }
-      if (this.tail.value.value === value) {
-        this.tail = currentNode;
-      }
-    } else {
-      if (this.head.value === value) {
-        deletedNode = this.head;
-        this.head = this.head.next;
-      }
-      let currentNode = this.head;
-      while (currentNode.next) {
-        if (currentNode.next.value === value) {
-          deletedNode = currentNode.next;
-          currentNode.next = currentNode.next.next;
-        } else {
-          currentNode = currentNode.next;
-        }
-      }
-      if (this.tail.value === value) {
-        this.tail = currentNode;
-      }
+    
+    let firstNode = this.head;
+    if (firstNode.nextElement == null) {
+      this.deleteAtHead();
+      return this;
     }
-    return deletedNode;
+    while (firstNode.nextElement.nextElement != null) {
+      firstNode = firstNode.nextElement;
+    }
+    firstNode.nextElement = null;
+    return this;
   }
 }
