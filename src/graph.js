@@ -1,32 +1,47 @@
+"use strict";
+const LinkedList = require('./LinkedList.js');
+
 class Graph {
-  constructor(vertices) {
-    this.vertices = new Array(vertices).fill("");
-    this.edges = 0;
-    this.adj = [];
-    this.vertices.forEach((_, index) => {
-      this.adj[index] = [];
-    });
-  }
-  addEdge(x, y) {
-    this.adj[x].push(y);
-    this.adj[y].push(x);
-    this.edges++;
-  }
-  show() {
-    for (let i = 0; i < this.vertices.length; i++) {
-      console.log(i, "-------->");
-      for (let j = 0; j < this.vertices.length; j++) {
-        if (typeof this.adj[i][j] !== "undefined") {
-          console.log(this.adj[i][j]);
-        }
-      }
+  constructor(vertices) {  
+    this.vertices = vertices;
+    this.list = [];
+    for (let i = 0; i < vertices; i++) {
+      let temp = new LinkedList();
+      this.list.push(temp);
     }
   }
-}
 
-g = new Graph(5);
-g.addEdge(0, 1);
-g.addEdge(0, 2);
-g.addEdge(1, 3);
-g.addEdge(2, 4);
-g.show();
+  addEdge(source, destination) {
+    if (source < this.vertices && destination < this.vertices){
+      this.list[source].insertAtHead(destination); 
+    }
+    return this;
+  }
+
+  printGraph() {
+    console.log(">>Adjacency List of Directed Graph<<");
+    for (let i = 0; i < this.list.length; i++) {
+      process.stdout.write("|" + String(i) + "| => ");
+      let temp = this.list[i].getHead();
+      while (temp != null) {
+        process.stdout.write("[" + String(temp.data) + "] -> ");
+        temp = temp.nextElement;
+      }
+      console.log("null ");
+    }
+  }
+
+  strGraph() {
+    let str = "";
+    for (let i = 0; i < this.list.length; i++) {
+      str = str + "|" + String(i) + "| => ";
+      let temp = this.list[i].getHead();
+      while (temp != null) {
+        str += ("[" + String(temp.data) + "] -> ");
+        temp = temp.nextElement;
+      }
+      str += "null ";
+    }
+    return str;
+  }
+}
