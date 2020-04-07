@@ -1,25 +1,41 @@
-export default class Queue {
-  constructor() {
-    this.dataStore = [];
+class Queue {
+  constructor(mySize) {
+    this.items = []
+    this.size = mySize;
+    this.front = 0;
+    this.back = -1;
   }
-  enqueue(e) {
-    this.dataStore.push(e);
+
+  isFull() {
+    return this.items.length >= this.size;
   }
-  dequeque() {
-    return this.dataStore.shift();
+
+  isEmpty() {
+    return this.items.length == 0;
   }
-  front() {
-    return this.dataStore[0];
+
+  getFront() {
+    if (this.items.length != 0) {
+      return this.items[0];
+    } else {
+      console.log("No elements in the queue");
+    }
   }
-  back() {
-    return this.dataStore[this.dataStore.length - 1];
+
+  enqueue(element) {
+    if (this.items.length >= this.size) {
+      console.log("Queue is full");
+    } else {
+      this.items.push(element);
+    }
   }
-  toString() {
-    let str = "";
-    this.dataStore.forEach((_, index) => (str += this.dataStore[index] + "\n"));
-    return str;
+
+  dequeue() {
+    if (this.items.length == 0) {
+      console.log("No elements");
+    } else {
+      return this.items.shift();
+    }
   }
-  empty() {
-    return !this.dataStore.length;
-  }
+  
 }
