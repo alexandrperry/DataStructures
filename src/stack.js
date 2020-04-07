@@ -1,21 +1,37 @@
 export default class Stack {
-  constructor() {
-    this.dataStore = [];
-    this.top = 0;
+  constructor(mySize) {
+    this.items = [];
+    this.size = mySize;
+    this.top = -1;
   }
-  push(element) {
-    this.dataStore[this.top++] = element;
-  }
-  pop() {
-    return this.dataStore[this.top--];
-  }
-  peek() {
-    return this.dataStore[this.top - 1];
-  }
-  length() {
+
+  getTop() {
     return this.top;
   }
-  clear() {
-    this.top = 0;
+
+  isEmpty() {
+    return this.items.length == 0;
+  }
+
+  isFull() {
+    return this.items.length >= this.size;
+  }
+
+  push(element) {
+    this.items.push(element);
+    this.top = element;
+  }
+
+  pop() {
+    if (this.items.length) {
+      if (this.items.length == 1) {
+        this.top = -1;
+        return this.items.pop();
+      } else {
+        this.top = this.items[this.items.length - 2];
+        return this.items.pop();
+      }
+
+    }
   }
 }
