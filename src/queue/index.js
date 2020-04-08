@@ -11,15 +11,15 @@ export default class Queue {
   }
 
   isEmpty() {
-    return this.items.length == 0;
+    return this.items.length === 0;
   }
 
   getFront() {
-    if (this.items.length != 0) {
+    if (this.items.length !== 0) {
       return this.items[0];
-    } else {
-      console.log("No elements in the queue");
-    }
+    } 
+    return new Error('Empty queue')
+    
   }
 
   enqueue(element) {
@@ -31,7 +31,7 @@ export default class Queue {
   }
 
   dequeue() {
-    if (this.items.length == 0) {
+    if (this.items.length === 0) {
       console.log("No elements");
     } else {
       return this.items.shift();

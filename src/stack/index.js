@@ -10,7 +10,7 @@ export default class Stack {
   }
 
   isEmpty() {
-    return this.items.length == 0;
+    return this.items.length === 0;
   }
 
   isFull() {
@@ -24,14 +24,15 @@ export default class Stack {
 
   pop() {
     if (this.items.length) {
-      if (this.items.length == 1) {
+      if (this.items.length === 1) {
         this.top = -1;
         return this.items.pop();
-      } else {
+      } 
         this.top = this.items[this.items.length - 2];
         return this.items.pop();
-      }
-    }
+      
+		}
+		return new Error('Empty stack')
   }
 }
   

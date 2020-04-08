@@ -1,10 +1,10 @@
 import Queue from '../queue'
-//Breadth First Traversal of Graph g from source vertex 
+// Breadth First Traversal of Graph g from source vertex 
 export default function bfsTraversal(graph, source = 0) {
-  let num_of_vertices = graph.vertices;
+  const numOfVertices = graph.vertices;
   const visited = new Set()
-  let queue = new Queue(num_of_vertices);
-  for(let i = source; i < num_of_vertices; i++){
+  const queue = new Queue(numOfVertices);
+  for(let i = source; i < numOfVertices; i++){
     if(!visited.has(i)){
       queue.enqueue(i)
       while(!queue.isEmpty()){

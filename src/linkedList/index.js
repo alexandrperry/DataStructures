@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-classes-per-file
 class Node {
   constructor(data) {
     this.data = data;
@@ -11,7 +12,7 @@ export default class LinkedList {
   }
 
   insertAtHead(newData) {
-    let tempNode = new Node(newData);
+    const tempNode = new Node(newData);
     tempNode.nextElement = this.head;
     this.head = tempNode;
     return this;
@@ -25,7 +26,7 @@ export default class LinkedList {
     if (this.isEmpty()) {
       console.log("Empty List");
       return false;
-    } else {
+    } 
       let temp = this.head;
       while (temp != null) {
         process.stdout.write(String(temp.data));
@@ -34,20 +35,22 @@ export default class LinkedList {
       }
       console.log("null");
       return true;
-    }
+    
   }
 
   getHead() {
     return this.head;
   }
+
   setHead(newHead) {
     this.head = newHead;
     return this;
   }
+
   getListStr() {
     if (this.isEmpty()) {
       return "null";
-    } else {
+    } 
       let st = "";
       let temp = this.head
       while (temp != null) {
@@ -57,10 +60,11 @@ export default class LinkedList {
       }
       st += "null";
       return st;
-    }
+    
   }
+
   insertAtTail(newData) {
-    let node = new Node(newData);
+    const node = new Node(newData);
 
     if (this.isEmpty()) {
       this.head = node;
@@ -74,6 +78,7 @@ export default class LinkedList {
     currentNode.nextElement = node;
     return this;
   }
+
   search(value) {
     let currentNode = this.head;
     while (currentNode != null) {
@@ -84,15 +89,17 @@ export default class LinkedList {
     }
     return false;
   }
+
   deleteAtHead() {
     if (this.isEmpty()) {
       return this;
     }
-    let firstElement = this.head;
+    const firstElement = this.head;
     this.head = firstElement.nextElement;
 
     return this;
   }
+
   deleteVal(value) {
     let deleted = null; 
 
@@ -116,6 +123,7 @@ export default class LinkedList {
     deleted = false;
     return deleted;
   }
+
   deleteAtTail() {
     if (this.isEmpty()) {
       return this;
