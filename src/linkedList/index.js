@@ -4,8 +4,8 @@ class Node {
     this.nextElement = null;
   }
 }
-  
-class LinkedList {
+    
+export default class LinkedList {
   constructor() {
     this.head = null;
   }
@@ -14,7 +14,7 @@ class LinkedList {
     let tempNode = new Node(newData);
     tempNode.nextElement = this.head;
     this.head = tempNode;
-    return this; //returning the updated list
+    return this;
   }
 
   isEmpty() {
@@ -133,3 +133,4 @@ class LinkedList {
     return this;
   }
 }
+  

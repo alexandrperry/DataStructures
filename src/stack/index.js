@@ -31,7 +31,7 @@ export default class Stack {
         this.top = this.items[this.items.length - 2];
         return this.items.pop();
       }
-
     }
   }
 }
+  

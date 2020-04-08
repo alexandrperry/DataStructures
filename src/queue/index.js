@@ -1,4 +1,4 @@
-class Queue {
+export default class Queue {
   constructor(mySize) {
     this.items = []
     this.size = mySize;
@@ -37,5 +37,6 @@ class Queue {
       return this.items.shift();
     }
   }
-  
+    
 }
+  

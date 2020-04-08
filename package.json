@@ -2,15 +2,16 @@
   "name": "data-structures-in-js",
   "version": "1.0.0",
   "description": "",
-  "main": "index.html",
   "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html"
+    "start": "nodemon ./src --ext js --exec babel-node"
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "7.2.0",
-    "parcel-bundler": "^1.6.1"
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.4",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "nodemon": "^2.0.2"
   },
   "keywords": []
 }
