@@ -1,7 +1,7 @@
 export default function numEdges(graph) {
 	let sum = 0;
 	for (let i = 0; i < graph.vertices; i++) {
-		let node = g.list[i].getHead();
+		let node = graph.list[i].getHead();
 		while (node) {
 			sum += 1;
 			node = node.nextElement;
