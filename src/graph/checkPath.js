@@ -1,4 +1,4 @@
-import Stack from '../stack'
+import Stack from "../stack";
 
 export default function checkPath(graph, source, destination) {
 	const numOfVertices = graph.vertices;
