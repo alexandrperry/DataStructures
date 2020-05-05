@@ -1,12 +1,13 @@
-import Graph from './graph'
+const removeDuplicates = function (nums) {
+	let i = 0;
+	let j = 1;
+	for (; j < nums.length; j++) {
+		if (nums[i] !== nums[j]) {
+			i++;
+			nums[i] = nums[j];
+		}
+	}
+	return i + 1;
+};
 
-const graph = new Graph(5)
-
-graph.addEdge(0,1)
-graph.addEdge(0,2)
-graph.addEdge(0,3)
-graph.addEdge(0,4)
-graph.addEdge(4,1)
-graph.addEdge(4,3)
-
-graph.printGraph()
+removeDuplicates([1, 1, 2, 2, 3, 4, 4, 4]);
